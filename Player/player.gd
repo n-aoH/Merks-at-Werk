@@ -151,7 +151,7 @@ func shoot_three_way():
 		bullet.max_range = 2000
 		bullet.speed = bullet_speed
 		bullet.transform = SpawnPos.global_transform
-		bullet.rotation += deg_to_rad(rot)
+		bullet.rotation_degrees += rot
 		get_tree().current_scene.add_child(bullet)
 	
 	if shoot_behind:

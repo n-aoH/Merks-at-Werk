@@ -1,3 +1,6 @@
 [gd_scene format=3 uid="uid://w1soc5n7vwdm"]
 
+[ext_resource type="Script" uid="uid://eaivqroghwin" path="res://Levels/field_template.gd" id="1_o5q5k"]
+
 [node name="FieldTemplate" type="Node2D" unique_id=1508715508]
+script = ExtResource("1_o5q5k")
