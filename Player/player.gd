@@ -7,7 +7,7 @@ const ACCELERATION = 7200
 const FRICTION = 5400
 
 # Weapon Stats
-var shot_pattern = "default"
+@export_enum("default", "volley_spread", "three_way") var shot_pattern: String = "default"
 var bullet_damage = 1
 var attack_cooldown = 0.3
 var shoot_behind = true
@@ -17,7 +17,6 @@ var homing_degrees = 5
 var homing_dist = 150
 var max_range = 500
 var bullet_speed = 800
-
 
 var Bullet = preload("res://Player/playerbullet.tscn")
 
@@ -79,6 +78,8 @@ func shoot():
 			shoot_default()
 		"volley_spread":
 			shoot_volley_spread()
+		"three_way":
+			shoot_three_way()
 	$ShootSpeed.start(attack_cooldown)
 	shooting_enabled = false
 
@@ -136,6 +137,32 @@ func shoot_volley_spread():
 			new_rotation_offset += bullet_volley_spread
 			get_tree().current_scene.add_child(bullet_behind)
 	
+func shoot_three_way():
+	
+	var bullet: Object
+	var bullet_behind: Object
+	
+	for rot in [-45, 45]:
+		
+		bullet = Bullet.instantiate()
+		print(type_string(typeof(bullet)))
+		bullet.damage = bullet_damage
+		bullet.homing_degrees = 0
+		bullet.max_range = 2000
+		bullet.speed = bullet_speed
+		bullet.transform = SpawnPos.global_transform
+		bullet.rotation += deg_to_rad(rot)
+		get_tree().current_scene.add_child(bullet)
+	
+	if shoot_behind:
+		bullet_behind = Bullet.instantiate()
+		bullet_behind.damage = bullet_damage
+		bullet_behind.homing_degrees = 0
+		bullet_behind.max_range = 2000
+		bullet_behind.speed = bullet_speed
+		bullet_behind.transform = SpawnPosBehind.global_transform
+		bullet_behind.transform.x = -bullet_behind.transform.x
+		get_tree().current_scene.add_child(bullet_behind)
 func player_hit(damage):
 	health -= damage
 	if health <= 0:
