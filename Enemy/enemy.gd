@@ -25,14 +25,14 @@ func _physics_process(delta: float) -> void:
 		
 	if speed != 0:
 		
-		var player_direction: Vector2 = global_position.direction_to(Globals.player_position)
-		var target_angle = player_direction.angle()
+		var axis: Vector2 = global_position.direction_to(Globals.player_position)
+		var target_angle = axis.angle()
 		
 		rotation = rotate_toward(rotation, target_angle, rot_speed * delta)
-		player_direction = Vector2.RIGHT.rotated(rotation)
+		axis = Vector2.RIGHT.rotated(rotation)
 		
-		if player_direction != Vector2.ZERO:
-			velocity = speed * player_direction
+		if axis != Vector2.ZERO:
+			velocity = speed * axis
 			
 		var collision = move_and_collide(velocity * delta)
 		if collision:

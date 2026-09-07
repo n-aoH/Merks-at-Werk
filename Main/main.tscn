@@ -30,4 +30,6 @@ script = ExtResource("4_f6fdm")
 
 [node name="DemoField" parent="." unique_id=1568139286 instance=ExtResource("5_rj11h")]
 
+[node name="Field1" parent="." unique_id=1421180403 instance=ExtResource("5_rj11h")]
+
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]

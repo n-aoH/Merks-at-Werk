@@ -87,7 +87,7 @@ func shoot_default():
 	var bullet_behind: Object
 
 	bullet = Bullet.instantiate()
-	print(type_string(typeof(bullet)))
+	print("Bullet has type ", type_string(typeof(bullet)))
 	bullet.damage = bullet_damage
 	bullet.homing_degrees = 0
 	bullet.max_range = 2000
