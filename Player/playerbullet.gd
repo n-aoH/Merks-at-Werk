@@ -1,6 +1,6 @@
 extends Area2D
 
-var SPEED = 800
+var speed = 800
 var damage = 1
 var homing_degrees = 0
 var max_homing_dist = 0
@@ -33,8 +33,8 @@ func _physics_process(delta: float) -> void:
 			var direction = closest_enemy.global_position - self.global_position
 			var target_angle = direction.angle()
 			rotation = rotate_toward(rotation, target_angle, homing_degrees * delta)
-	position += transform.x * SPEED * delta
-	current_range += SPEED * delta
+	position += transform.x * speed * delta
+	current_range += speed * delta
 	
 	if current_range > max_range:
 		queue_free()
